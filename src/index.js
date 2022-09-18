@@ -14,7 +14,8 @@ import {persistStore} from "redux-persist";
 
 
 /* CSS */
-import './global/globalCSS.css'
+import './asset/globalCSS.css'
+
 
 let newPersistStore = persistStore(store)
 
