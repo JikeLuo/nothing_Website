@@ -13,7 +13,7 @@ const Nav = styled.div`
     z-index: 3;
     transition: 0.3s ease-out;
     overflow: visible;
-    transform: translateY(${props => props.hideNav ? '-350' : '-300'}px);
+    transform: translateY(${({hideNav}) => hideNav ? '-350' : '-300'}px);
     > ul {
         position: relative;
         z-index: 20;
@@ -67,12 +67,13 @@ export default function Navbar(p) {
     const {hideNav} = useSelector(selectHome)
     const {isLogin, userSymbol, cartItems, howManyCount} = useSelector(selectAccount)
     const dispatch = useDispatch()
+    const {twoBlack} = p
 
 
     /* 初始化 localStorage */
     const initialUserDataState = JSON.parse(localStorage.getItem('initialUserData'))
     const initialUser = () => {
-        localStorage.setItem('initialUserData', true)
+        localStorage.setItem('initialUserData', JSON.stringify(true))
         const data = {
             emailTemplate: {
                 userName: 'template',
@@ -90,12 +91,6 @@ export default function Navbar(p) {
         e.deltaY < 0 ?
             dispatch(addScrollHideNav('show')) : dispatch(addScrollHideNav('hide'))
     })
-
-
-    /* 滑鼠靠近 List，顯示 List列表 */
-    const actList = (action) => {
-        dispatch(addShowList(action))
-    }
 
 
     /*   變換頁面，更新 Nav顯示
@@ -116,21 +111,17 @@ export default function Navbar(p) {
 
 
     return (
-        <Nav onMouseLeave={() => actList('hide')}
-             showList={showList}
-             hideNav={hideNav}
-             black={p.black}
-        >
+        <Nav onMouseLeave={() => void dispatch(addShowList('hide'))} showList={showList} hideNav={hideNav} black={p.black}>
             <List/>
             <ul>
                 <li><Link to='/home'>NOTHING(R)</Link></li>
-                <li id='products'><span onMouseEnter={() => actList('show')}>PRODUCTS<b> > </b></span></li>
+                <li id='products'><span onMouseEnter={() => void dispatch(addShowList('show'))}>PRODUCTS<b> > </b></span></li>
                 <li><Link to='/store'>STORE</Link></li>
 
-                {!isLogin && <li><Link to='/login'>LOGIN</Link></li>}
+                {!isLogin && <li><Link to='/login' style={{color: `${twoBlack && !showList ? 'black' : ''}`}}>LOGIN</Link></li>}
                 {isLogin && <li><Link to='/account/order' className='symbol'>{userSymbol}</Link></li>}
 
-                <li onClick={() => showCart()}>CART( {howManyCount} )</li>
+                <li onClick={() => showCart()} style={{color: `${twoBlack && !showList ? 'black' : ''}`}}>CART( {howManyCount} )</li>
             </ul>
 
         </Nav>

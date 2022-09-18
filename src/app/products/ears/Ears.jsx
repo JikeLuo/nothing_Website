@@ -90,7 +90,7 @@ const earTemplateProps = {
 export default function App() {
     return (
         <div>
-            <Navbar black={true} />
+            <Navbar black={true} twoBlack={true}/>
             <ChangeCountry/>
             <Cart />
             <EarsMain />

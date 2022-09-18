@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {globalVar} from "../../asset/globalVar";
-import {
-    addScrollToShowAnimate,
-    addScrollToCount,
-    selectHome,
-} from "../../redux/slice/HomeReducer";
+import {addScrollToShowAnimate, addScrollToCount, selectHome,} from "../../redux/slice/HomeReducer";
 
 import Navbar from "../navbar/Navbar";
 import Main from "./Main";
@@ -20,10 +16,7 @@ import Cart from '../cart/Cart'
 
 
 const {primaryColor} = globalVar
-const Home = styled.div`
-            background-color: ${primaryColor};  
-            
-        `
+const Home = styled.div` background-color: ${primaryColor};`
 
 export default function App() {
     const dispatch = useDispatch()
@@ -42,16 +35,16 @@ export default function App() {
 
     return (
         <Home onWheel={(e) => scrollToAct(e)}>
-            <Navbar />
-            <Cart />
-            <ChangeCountry />
-            <Main />
-            <Award />
-            <Event />
-            <Ears />
-            <About />
-            <Purchase />
-            <Footer />
+            <Navbar black={true} twoBlack={true}/>
+            <Cart/>
+            <ChangeCountry/>
+            <Main/>
+            <Award/>
+            <Event/>
+            <Ears/>
+            <About/>
+            <Purchase/>
+            <Footer/>
         </Home>
     );
 }

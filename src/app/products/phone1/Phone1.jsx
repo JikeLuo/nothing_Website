@@ -115,7 +115,7 @@ export default function App() {
     return (
         <PhoneMain onWheel={()=> scrollAnimation()} scroll={phoneScroll}>
 
-            <Navbar/>
+            <Navbar twoBlack={true}/>
             <ChangeCountry />
             <Cart />
 

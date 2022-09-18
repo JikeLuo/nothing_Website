@@ -81,6 +81,7 @@ export default function App() {
         else if (!(e in data) || data[e] !== p) void setPasswordWrongState(true)
     }
 
+    console.log(passwordWrongState)
     return (
         <LoginMain>
 

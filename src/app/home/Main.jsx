@@ -6,10 +6,12 @@ import {selectHome} from "../../redux/slice/HomeReducer";
 import {globalVar} from '../../asset/globalVar'
 
 
-const { primaryColor,
-        slowTransition,
-        transition,
-        whiteTransparent} = globalVar
+const {
+    primaryColor,
+    slowTransition,
+    transition,
+    whiteTransparent
+} = globalVar
 
 const Main = styled.div`
         display: flex;
@@ -17,7 +19,7 @@ const Main = styled.div`
         align-item: start;
         z-index: 2;
         width: 100vw;
-        position: ${props => props.fixed? 'static' : 'fixed'};
+        position: ${props => props.fixed ? 'static' : 'fixed'};
         height: 100vh;
         background-color: ${primaryColor};
         ${transition}
@@ -29,7 +31,7 @@ const Main = styled.div`
             ${transition}
         }
         > #mask {
-            display: ${props =>  props.isTransparent? `none;` : 'flex'};
+            display: ${props => props.isTransparent ? `none;` : 'flex'};
             justify-content: center;
             align-items: center;
             font-size: 120px;
@@ -50,7 +52,7 @@ const Main = styled.div`
             font-size: 150px;
             font-family: Ndot55; 
             ${slowTransition}
-            transform: rotate(90deg) translateX(${props => props.phone? 560 : 0}px);   
+            transform: rotate(90deg) translateX(${props => props.phone ? 560 : 0}px);   
 
         }
         > #intro {
@@ -83,8 +85,6 @@ const Main = styled.div`
         `
 
 
-
-
 export default function App() {
     const {
         scrollTransparent,
@@ -98,27 +98,23 @@ export default function App() {
     } = useSelector(selectHome)
 
 
-
     return (
-            <Main transparent={scrollTransparent}
-                  isTransparent={isTransparent}
-                  img={scrollImgWidth}
-                  move={scrollImgMove}
-                  intro={introMove}
-                  phone={phoneMove}
-                  main={mainMove}
-                  fixed={mainFixed}>
-                <div id='mask'>純粹直覺</div>
-                <img src={person} alt={''}/>
-                <div id='phone'>phone ( 1 )</div>
-                <div id='intro'>
-                    <div>
-                        <span>Phone&nbsp;(&nbsp;1&nbsp;)</span>
-                        <b>簡介。</b>
-                    </div>
-                    <span>純粹直覺。</span>
-                    <p>依循直覺設計，重現日常愉悅。透過 Glyph Interface、完美作業系統和卓越雙鏡頭。一切都快得不可思議。</p>
+        <Main transparent={scrollTransparent} isTransparent={isTransparent} img={scrollImgWidth} move={scrollImgMove}
+              intro={introMove} phone={phoneMove}
+              main={mainMove}
+              fixed={mainFixed}
+        >
+            <div id='mask'>純粹直覺</div>
+            <img src={person} alt={''}/>
+            <div id='phone'>phone ( 1 )</div>
+            <div id='intro'>
+                <div>
+                    <span>Phone&nbsp;(&nbsp;1&nbsp;)</span>
+                    <b>簡介。</b>
                 </div>
-            </Main>
+                <span>純粹直覺。</span>
+                <p>依循直覺設計，重現日常愉悅。透過 Glyph Interface、完美作業系統和卓越雙鏡頭。一切都快得不可思議。</p>
+            </div>
+        </Main>
     );
 }
